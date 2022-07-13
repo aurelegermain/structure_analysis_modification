@@ -6,13 +6,13 @@ import argparse
 
 parser = argparse.ArgumentParser()
 #list of arguments
-parser.add_argument('structure', metavar='G', help='structure to sample select the outer layer in any ase structure format.', type=str)
+parser.add_argument('structure', metavar='G', help='Structure to select the surface layer of. In any ase structure format.', type=str)
 parser.add_argument('-d', '--distance', help='Radius of molecules selected around the molecule studied (in A).', type=float, default="5")
 parser.add_argument('-ma', '--max_angle', help='Angle of the cone on top of the molecule studied. If a molecule is in this cone, it is considered on top of the studied one (in degrees).', type=float, default='140')
-parser.add_argument('-mt', '--max_top', help='RMax number of molecules allowed to be on top of the one studied to be considered as on the outer layer.', type=int, default='1')
-parser.add_argument('-xtbin', '--xtb_input', help='Print an xtb input with the top molecules constrained. The xtb input will be names "xtb.inp"', type=bool, default=False)
-parser.add_argument('-nolist', '--no_list', help='Do not print the list of atoms of the outer layer.', type=bool, default=False)
-parser.add_argument('-vs', '--view_structure', help='View the structure with the selected surface molecules.', type=bool, default=False)
+parser.add_argument('-mt', '--max_top', help='Max number of molecules allowed to be on top of the one studied to be considered as on the outer layer.', type=int, default='1')
+parser.add_argument('-xtbin', '--xtb_input', help='Print an xtb input with the top molecules constrained. The xtb input will be names "xtb.inp"', default=False, action='store_true')
+parser.add_argument('-nolist', '--no_list', help='Do not print the list of atoms of the outer layer.', default=False, action='store_true')
+parser.add_argument('-vs', '--view_structure', help='View the structure with the selected surface molecules.', default=False, action='store_true')
 
 args = parser.parse_args()
 
@@ -27,7 +27,7 @@ view_structure = args.view_structure
 
 def molecule_Id(atoms):
     ''' 
-    takes the atoms object and associates each atoms with its corresponding molecule
+    Takes the atoms object and associates each atoms with its corresponding molecule
     return the number of molecules and an array the size of atoms where the values component_list[i] gives the molecule id of the atom i
     '''
     cutOff = neighborlist.natural_cutoffs(atoms, mult=0.95)
