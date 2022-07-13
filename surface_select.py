@@ -95,7 +95,7 @@ for i in range(n_mol):
 list_atoms_surface = list(dict.fromkeys([i for atom_inside in range(len(list_mol_surface)) for i in list(np.where(list_atoms == list_mol_surface[atom_inside])[0])])) #convert list_mol_up_final in a list of atoms instead of molecules
 
 if no_list == False:
-    print(list_atoms_surface)
+    for i in list_atoms_surface: print(i)
 
 if view_structure == True: #show the structure if the user wants
     list_atoms_not_surface = [i for i in range(len(grain)) if i not in list_atoms_surface] #list of atoms not at the surface

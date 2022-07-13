@@ -52,7 +52,7 @@ if len(list_molecules_outside) == 0:
     exit()
 
 if no_list == False: #print list of atoms not deleted
-    print(list_molecules_outside)
+    for i in list_molecules_outside: print(i)
 
 if no_structure == False:
     new_file_name = split_file_name[0] + '_hollow' + split_file_name[1] #name of the hollowed out new structure, with the same extension as the original structure file
